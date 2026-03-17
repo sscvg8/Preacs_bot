@@ -169,13 +169,15 @@ async def cmd_start(message: Message, state: FSMContext, session: AsyncSession) 
         if len(required) > 1:
             labels[required[1]] = "Подписаться на Предпринимательский клуб"
         if len(required) > 2:
-            labels[required[2]] = "Подписаться на организатора"
+            labels[required[2]] = "Подписаться на Бизнес-клуб Президентской академии"
         if len(required) > 3:
-            labels[required[3]] = "Подписаться на организатора"
+            labels[required[3]] = "Подписаться на Клуб Предпринимателей МИСИС"
         if len(required) > 4:
-            labels[required[4]] = "Подписаться на организатора"
+            labels[required[4]] = "Подписаться на Предпринимательский клуб Финансового университета "
         if len(required) > 5:
-            labels[required[5]] = "Подписаться на организатора"
+            labels[required[5]] = "Подписаться на Стартап клуб МИРЭА"
+        if len(required) > 6:   
+            labels[required[6]] = "Подписаться на Стартап клуб Московского ПолиТеха"
         missing = _missing or required
         await message.answer(
             "Чтобы пользоваться ботом, подпишись на каналы и нажми «Проверить подписку»",

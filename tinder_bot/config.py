@@ -27,6 +27,7 @@ class Settings(BaseSettings):
     REQUIRED_CHANNEL_4: str = ""
     REQUIRED_CHANNEL_5: str = ""
     REQUIRED_CHANNEL_6: str = ""
+    REQUIRED_CHANNEL_7: str = ""
 
     @property
     def required_channels(self) -> list[str]:
@@ -39,6 +40,7 @@ class Settings(BaseSettings):
             self.REQUIRED_CHANNEL_4,
             self.REQUIRED_CHANNEL_5,
             self.REQUIRED_CHANNEL_6,
+            self.REQUIRED_CHANNEL_7,
         ):
             v = (raw or "").strip()
             if not v:

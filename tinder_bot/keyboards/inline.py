@@ -42,7 +42,15 @@ def required_subscription_kb(channels: list[str], labels: dict[str, str] | None 
                 elif idx == 1:
                     btn_text = "Подписаться на Предпринимательский клуб"
                 elif idx == 2:
-                    btn_text = "Подписаться на основателя клуба"
+                    btn_text = "Подписаться на Бизнес-клуб Президентской академии"
+                elif idx == 3:
+                    btn_text = "Подписаться на Клуб Предпринимателей МИСИС"
+                elif idx == 4:
+                    btn_text = "Подписаться на Предпринимательский клуб Финансового университета "
+                elif idx == 5:
+                    btn_text = "Подписаться на Стартап клуб МИРЭА"
+                elif idx == 6:
+                    btn_text = "Подписаться на Стартап клуб Московского ПолиТеха"
                 else:
                     btn_text = f"Подписаться: @{username}"
             rows.append([InlineKeyboardButton(text=btn_text, url=f"https://t.me/{username}")])
