@@ -94,6 +94,16 @@ async def _is_subscribed_to_all(bot, user_id: int) -> tuple[bool, list[str]]:
         try:
             member = await bot.get_chat_member(chat_id=chat_id, user_id=user_id)
         except Exception as e:
+            # Telegram может запретить получать список участников (например, если бот не админ канала).
+            # В этом случае НЕ блокируем регистрацию: пропускаем проверку для этого канала.
+            msg = str(e).lower()
+            if "member list is inaccessible" in msg:
+                logger.warning(
+                    "Skipping subscription check for channel=%r (member list inaccessible): %s",
+                    raw,
+                    e,
+                )
+                continue
             # Если бот не админ/не в канале/канал приватный — Telegram не даст проверить.
             # В этом случае безопаснее считать, что подписки нет.
             logger.warning("Failed to check subscription for channel=%r: %s", raw, e)
@@ -202,7 +212,7 @@ async def cb_subcheck(call: CallbackQuery, state: FSMContext, session: AsyncSess
         if len(required) > 1:
             labels[required[1]] = "Подписаться на Предпринимательский клуб"
         if len(required) > 2:
-            labels[required[2]] = "Подписаться на основателя клуба"
+            labels[required[2]] = "Подписаться на Бизнес-клуб Президентской академии"
         missing = _missing or required
         # Показываем в чат (а не alert), какие именно каналы ещё нужны
         await call.message.answer(
